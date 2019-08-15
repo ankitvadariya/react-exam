@@ -13,18 +13,15 @@ export function* getDocuments({ payload }) {
             yield put(selectDocument(response.data[0]));
         }
     } else {
-        yield put(loadAllDocuments(null));
+        yield put(loadAllDocuments([]));
     }
 }
 
 export function* sendDocument({ payload }) {
     const response = yield call(uploadFile, payload);
-
-    if (response.status == 200) {
+    if (response && response.status == 200) {
         yield put(loadAllDocuments(response.data));
-    } else {
-        yield put(loadAllDocuments(null));
-    }
+    } 
 }
 
 export default function* rootSaga() {

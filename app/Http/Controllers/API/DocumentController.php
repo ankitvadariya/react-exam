@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 
 class DocumentController extends Controller {
@@ -16,7 +17,7 @@ class DocumentController extends Controller {
 
         foreach ($allFiles as $file) {
             $files[] = [
-                "id" => $i++,
+                "id" => str_slug($file),
                 "users" => "Me, Dustin",
                 "file_name" => pathinfo($file, PATHINFO_BASENAME),
                 "file_url" => "/api/document/load?path=$file",
@@ -32,6 +33,18 @@ class DocumentController extends Controller {
     }
 
     function uploadDocument(Request $request) {
+
+
+        $validator = Validator::make($request->all(), [
+                    'file' => 'required|mimes:pdf',
+        ]);
+
+
+        if ($validator->fails()) {
+            return response($validator->errors(), 406);
+        }
+
+
         $file = $request->file('file');
         $image_name = $file->getClientOriginalName();
         $file->move(storage_path('app/public/documents/'), $image_name);

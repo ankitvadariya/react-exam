@@ -15,6 +15,7 @@ import { compose } from "redux";
 import { connect } from "react-redux";
 import { getAllDocuments, uploadDocument } from "./actions";
 
+
 const drawerWidth = 300;
 
 const styles = theme => ({

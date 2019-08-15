@@ -21,5 +21,11 @@ export const uploadFile = file => {
             "content-type": "multipart/form-data"
         }
     };
-    return post(url, formData, config);
+    return post(url, formData, config)
+        .then(response => {
+            return response;
+        })
+        .catch(error => {
+            alert("Please upload only PDF files");
+        });
 };
