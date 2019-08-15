@@ -1,0 +1,31 @@
+// Bootstrap
+@import "../../node_modules/font-awesome/scss/font-awesome";
+
+
+@font-face {
+    font-family: "Neue Alte Grotesk";
+    src: url("/fonts/Net-NeueAlteGrotesk3.ttf");
+}
+
+div canvas{
+    display: -webkit-inline-box !important;
+}
+
+.fileupload {
+    position: relative;
+    overflow: hidden;
+}
+
+.fileupload input {
+    position: absolute;
+    top: 0;
+    right: 0; /* not left, because only the right part of the input seems to
+                 be clickable in some browser I can't remember */
+    cursor: pointer;
+    opacity: 0.0;
+    filter: alpha(opacity=0); /* and all the other old opacity stuff you
+                                 want to support */
+    font-size: 300px; /* wtf, but apparently the most reliable way to make
+                         a large part of the input clickable in most browsers */
+    height: 200px;
+}
