@@ -20,6 +20,8 @@ I have took laravel webpack & react refrance from the
 
 **Step 4** : compile react code using `npm run dev`
 
+**Step 5** : start laravel server `php artisan serve`
+
 
 ### Note: 
 
